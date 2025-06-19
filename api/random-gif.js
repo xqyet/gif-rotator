@@ -18,9 +18,10 @@ export default function handler(req, res) {
     "https://raw.githubusercontent.com/xqyet/xqyet/main/media/windy.gif"
   ];
 
-  const randomIndex = Math.floor(Math.random() * gifs.length);
-  const randomGif = gifs[randomIndex];
+  const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
 
+  // prevent vercel from caching the redirect
+  res.setHeader("Cache-Control", "no-store");
   res.writeHead(302, { Location: randomGif });
   res.end();
 }
