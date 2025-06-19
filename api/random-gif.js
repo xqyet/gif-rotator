@@ -18,6 +18,9 @@ export default function handler(req, res) {
     "https://raw.githubusercontent.com/xqyet/xqyet/main/media/windy.gif"
   ];
 
-  const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-  res.redirect(randomGif);
+  const randomIndex = Math.floor(Math.random() * gifs.length);
+  const randomGif = gifs[randomIndex];
+
+  res.writeHead(302, { Location: randomGif });
+  res.end();
 }
